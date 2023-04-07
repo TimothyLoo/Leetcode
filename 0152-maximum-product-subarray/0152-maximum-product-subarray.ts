@@ -11,24 +11,39 @@ function maxProduct(nums: number[]): number {
         // max set to max of (max, maxSoFar)
     
     
+//     let max: number = nums[0];
+//     let maxSoFar: number = nums[0];
+//     let total: number = nums[0];
+    
+//     for (let i: number = 1; i < nums.length; i++) {
+//         (!total) ? total = nums[i] : total *= nums[i];
+//         maxSoFar = Math.max(nums[i], maxSoFar * nums[i]);
+//         max = Math.max(max, maxSoFar, total);
+//     }
+    
+//     maxSoFar = nums[nums.length - 1];
+//     total = nums[nums.length - 1];
+    
+//     for (let i: number = nums.length - 2; i >= 0; i--) {
+//         (!total) ? total = nums[i] : total *= nums[i];
+//         maxSoFar = Math.max(nums[i], maxSoFar * nums[i]);
+//         max = Math.max(max, maxSoFar, total);
+//     }
+    
+//     return max;
+    
     let max: number = nums[0];
-    let maxSoFar: number = nums[0];
-    let total: number = nums[0];
+    let min: number = nums[0];
+    let gMax: number = nums[0];
     
     for (let i: number = 1; i < nums.length; i++) {
-        (!total) ? total = nums[i] : total *= nums[i];
-        maxSoFar = Math.max(nums[i], maxSoFar * nums[i]);
-        max = Math.max(max, maxSoFar, total);
+        let n: number = nums[i];
+        let tempMax: number = Math.max(max*n, min*n, n);
+        
+        min = Math.min(max*n, min*n, n);
+        max = tempMax;
+        gMax = Math.max(gMax, max);
     }
     
-    maxSoFar = nums[nums.length - 1];
-    total = nums[nums.length - 1];
-    
-    for (let i: number = nums.length - 2; i >= 0; i--) {
-        (!total) ? total = nums[i] : total *= nums[i];
-        maxSoFar = Math.max(nums[i], maxSoFar * nums[i]);
-        max = Math.max(max, maxSoFar, total);
-    }
-    
-    return max;
+    return gMax;
 };
