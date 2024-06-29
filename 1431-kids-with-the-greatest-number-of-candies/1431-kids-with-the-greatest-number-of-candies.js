@@ -7,8 +7,8 @@ var kidsWithCandies = function(candies, extraCandies) {
     const max = Math.max(...candies);
     const result = [];
     
-    for (const i of candies) {
-        if (i + extraCandies >= max) {
+    for (const n of candies) {
+        if (n + extraCandies >= max) {
             result.push(true);
         } else {
             result.push(false);
