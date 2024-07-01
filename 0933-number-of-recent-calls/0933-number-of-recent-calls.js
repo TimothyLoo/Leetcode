@@ -1,6 +1,7 @@
 
 var RecentCounter = function() {
     this.p = [];
+    this.l = 0;
 };
 
 /** 
@@ -8,10 +9,11 @@ var RecentCounter = function() {
  * @return {number}
  */
 RecentCounter.prototype.ping = function(t) {
-    let count = 0;
     this.p.push(t);
-    this.p.forEach(_p=>{if(_p >= t - 3000) count++;})
-    return count;
+    while (this.p[this.l] < t - 3000) {
+        this.l++;
+    }
+    return this.p.length - this.l;
 };
 
 /** 
