@@ -4,12 +4,10 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    const map = {};
-    for (i in nums) {
-        let difference = target - nums[i];
-        if (difference in map) {
-            return [i, map[difference]];
-        }
-        map[nums[i]] = i;
+    const map = new Map();
+    for (const i in nums) {
+        const dif = target - nums[i];
+        if (map.has(dif)) return [map.get(dif),i];
+        map.set(nums[i],i);
     }
 };
