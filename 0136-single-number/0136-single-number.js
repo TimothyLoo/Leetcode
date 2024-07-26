@@ -3,15 +3,11 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    const set = new Set();
+    let res = nums[0];
     
-    for (const n of nums) {
-        if (set.has(n)) {
-            set.delete(n);
-        } else {
-            set.add(n);
-        }
+    for (let i = 1; i < nums.length; i++) {
+        res ^= nums[i];
     }
     
-    return set.values().next().value;
+    return res;
 };
