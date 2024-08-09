@@ -4,17 +4,14 @@
  */
 var findLHS = function(nums) {
     const map = {};
+    let res = 0;
     for (const n of nums) {
         map[n] = map[n] + 1 || 1;
+        if (n + 1 in map)
+            res = Math.max(map[n] + map[n + 1], res)
+        if (n - 1 in map)
+            res = Math.max(map[n] + map[n - 1], res)
     }
     
-    let result = 0;
-    
-    for (const key in map) {
-        const k = parseInt(key);
-        if ((k + 1) in map)
-            result = Math.max(map[k] + map[k + 1], result);
-    }
-    
-    return result;
+    return res;
 };
